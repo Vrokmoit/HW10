@@ -103,7 +103,7 @@ def input_error(func):
             return str(e)
     return wrapper
 
-# Добавьте декоратор ко всем функциям, где нужна обработка ошибок
+
 @input_error
 def add_contact(name, phone):
     record = Record(name)
@@ -153,11 +153,10 @@ def main():
         if command == "hello":
             print("How can I help you?")
         elif command.startswith("add "):
-            _, *rest = command.split()
-            if len(rest) != 2:
-                print("Enter both name and phone")
+            _, name, phone, *rest = command.split()
+            if not name or not phone:
+                print("Enter a name and phone")
                 continue
-            name, phone = rest
             response = add_contact(name, phone)
             print(response)
         elif command.startswith("change "):
