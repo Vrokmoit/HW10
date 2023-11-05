@@ -172,6 +172,13 @@ def main():
                 print(response)
             except Exception as e:
                 print(e)
+        elif command.startswith("delete "):
+            _, name = command.split()
+            try:
+                address_book.delete(name)
+                print(f"Contact '{name}' deleted successfully")
+            except KeyError:
+                print(f"Contact '{name}' not found")
         elif command == "show all":
             result = show_all_contacts()
             print(result)
